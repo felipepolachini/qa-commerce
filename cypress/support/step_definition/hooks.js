@@ -5,3 +5,6 @@ After({ tags: '@addProduct' }, () => {
     cy.deleteCarrinho(testData?.userId || 1)
 });
 
+After(() => {
+    cy.screenshot();
+});

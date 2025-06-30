@@ -9,6 +9,3 @@ import './services/carrinho/commands'
 import 'cypress-mochawesome-reporter/register';
 
 
-after(() => {
-    cy.screenshot();
-});
