@@ -2,16 +2,21 @@
   "name": "qa-commerce",
   "version": "1.0.0",
   "description": "Projeto de simulação de aulas de QA",
-  "main": "index.js",
+  "main": "cypress.config.js",
   "scripts": {
     "start": "node src/server.js",
-    "db": "node scripts/init_db.js"
+    "db": "node scripts/init_db.js",
+    "test_qa": "npx cypress open",
+    "test_qa_headless": "npx cypress run --env TAGS=\"not @pending\"",
+    "test_qa_e2e_headless": "npx cypress run --env TAGS=\"@e2e and not @pending\"",
+    "test_qa_api_headless": "npx cypress run --env TAGS=\"@api and not @pending\""
+    
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
     "joi": "^17.13.3",
@@ -20,5 +25,18 @@
     "sqlite3": "^5.1.7",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.2.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
+    "@faker-js/faker": "^9.8.0",
+    "cucumber": "^6.0.7",
+    "cypress": "^14.5.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-mochawesome-reporter": "^3.8.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/support/step_definition/*.{js,ts}"
   }
 }
